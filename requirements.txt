@@ -6,3 +6,4 @@ faiss-cpu>=1.7.2
 fastapi>=0.95.0
 uvicorn>=0.22.0
 google-cloud-aiplatform>=1.26.0
+    

@@ -75,11 +75,13 @@ class VectorStore():
         # Convert to numpy float32 array
         query_vector = np.array([query_embedding], dtype='float32')
         
-        # Search the FAISS index
+        # Search the FAISS index, returns two arrays whose shapes are (1, k)
         distances, indices = self.index.search(query_vector, k)
         
         # Retrieve metadata
         results = []
+        
+        # To get top k results for the first and only query, we use index 0. 
         for idx, dist in zip(indices[0], distances[0]):
             meta = self.metadata.get(idx, {})
             results.append({"metadata" : meta, "distace": dist})
