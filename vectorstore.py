@@ -1,4 +1,5 @@
 from langchain.vectorstores import FAISS
+from langchain.embeddings import SentenceTransformerEmbeddings
 from ingestion import PDFIngestor
 import numpy as np 
 import faiss
@@ -10,9 +11,10 @@ import os
 will be stored. """
 
 class VectorStore(): 
-    def __init__(self, embedding_dim : int, index_path: str = None):
+    def __init__(self, embedding_dim : int, index_path: str = None, embedding_model_name="all-MiniLM-L6-v2"):
         self.index_path = index_path
         self.embedding_dim = embedding_dim
+        self.embedding_model = SentenceTransformerEmbeddings(model_name=embedding_model_name)
         self.metadata = {} # Map vector id to data
         
         if index_path and os.path.exists(index_path):
@@ -62,7 +64,30 @@ class VectorStore():
                 
         
     
-    
+    def query_search(self, query_text, k=5): 
+        """Using nearest neighbours, we will be able to use 
+        semantic search. Returns only the text chunks, keeping the 
+        LLM output separate. """
+        
+        # Embed the query
+        query_embedding = self.embedding_model.embed_query(query_text)
+        
+        # Convert to numpy float32 array
+        query_vector = np.array([query_embedding], dtype='float32')
+        
+        # Search the FAISS index
+        distances, indices = self.index.search(query_vector, k)
+        
+        # Retrieve metadata
+        results = []
+        for idx, dist in zip(indices[0], distances[0]):
+            meta = self.metadata.get(idx, {})
+            results.append({"metadata" : meta, "distace": dist})
+            
+        return results
+
+
+        
         
         
         
