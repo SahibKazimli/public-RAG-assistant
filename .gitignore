@@ -1,0 +1,14 @@
+# Ignore Python cache and bytecode
+__pycache__/
+*.pyc
+
+# Ignore virtual environments (adjust if you use a different name)
+venv/
+.env
+
+
+# Ignore data uploads folder (optional)
+data/
+
+# Ignore the whole credentials folder
+credentials/
