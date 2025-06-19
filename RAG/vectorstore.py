@@ -10,6 +10,7 @@ import os
 """The file creating the vector store database, where the user's uploaded files 
 will be stored. """
 
+
 class VectorStore(): 
     def __init__(self, embedding_dim : int, index_path: str = None, embedding_model_name="all-MiniLM-L6-v2"):
         self.index_path = index_path
@@ -84,7 +85,9 @@ class VectorStore():
         # To get top k results for the first and only query, we use index 0. 
         for idx, dist in zip(indices[0], distances[0]):
             meta = self.metadata.get(idx, {})
-            results.append({"metadata" : meta, "distace": dist})
+            results.append({"metadata" : meta, 
+                            "distance": dist,
+                            "text": meta.get("text","")}) # Return chunk text directly 
             
         return results
 
