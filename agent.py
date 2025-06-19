@@ -1,11 +1,20 @@
 from langchain_google_vertexai import ChatVertexAI
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from dotenv import load_dotenv
 from typing import List
 import os 
 
-# Insert your actual API key here. 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "API key"
+
+"""Using dotenv for security reasons as this code is publicly available
+on Github, and I do not want my API key exposed. As a private user, 
+running this code locally or on the cloud for personal use, you can just 
+use the relative path for your API key. """
+
+load_dotenv()
+credentials_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
 
 
 # Initialize the model via langchain
@@ -26,7 +35,7 @@ Question: {question}
 """)
 
 def generate_answers(query: str, context_chunks: List[str]) -> str: 
-    context = "\n".join(context_chunks)
+    context = " \n".join(context_chunks)
     
     # Chain which will get a clean, generated LLM response
     chain = prompt_template | instruct_llm | StrOutputParser()

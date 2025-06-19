@@ -2,9 +2,8 @@
 __pycache__/
 *.pyc
 
-# Ignore virtual environments (adjust if you use a different name)
+# Ignore virtual environments 
 venv/
-.env
 
 
 # Ignore data uploads folder (optional)
@@ -12,3 +11,6 @@ data/
 
 # Ignore the whole credentials folder
 credentials/
+
+# Ignore the Google API key
+.env
