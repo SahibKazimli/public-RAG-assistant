@@ -34,6 +34,7 @@ Context: {context}
 Question: {question}
 """)
 
+
 def generate_answers(query: str, context_chunks: List[str]) -> str: 
     context = " \n".join(context_chunks)
     

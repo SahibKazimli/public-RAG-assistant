@@ -1,6 +1,7 @@
 from fastapi import APIRouter, UploadFile, File, Request
 from RAG.ingestion import PDFIngestor
 from RAG.vectorstore import VectorStore
+from agent import generate_answers
 from pydantic import BaseModel
 import os
 
@@ -62,5 +63,16 @@ async def query_endpoint(request: QueryRequest):
     top_chunks = vector_store.query_search(request.query, k=5)
     return {"results": top_chunks}
 
+"""The generate endpoint which will call the LLM to get a generated
+response. """
+
+@router.post("/generate")
+async def generate_endpoint(request: QueryRequest):
+    # Retrieve the top chunks from the vector DB
+    top_chunks = vector_store.query_search(request.query, k=5)
     
+    # Feed them into the LLM generator 
+    response = generate_answers(request.query, top_chunks)
+    
+    return response
 
