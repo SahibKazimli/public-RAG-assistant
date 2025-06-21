@@ -12,6 +12,7 @@ will be used:
 - Google Vertex AI
 - FAISS
 - dotenv
+- streamlit (Frontend)
 
 I chose Google's API for convenience, since I have quite a few GCP credits
 and would like to use them. Feel free to rework the code to fit your preferences, 
