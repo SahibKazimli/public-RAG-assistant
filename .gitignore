@@ -10,7 +10,7 @@ venv/
 data/
 
 # Ignore the whole credentials folder
-#credentials/
+credentials/
 
 # Ignore the Google API key
-#.env
+.env
