@@ -4,7 +4,7 @@ The goal of this project is to hone my skills and gain more knowledge by
 building tools. I will be building a RAG agent with an LLM to help me (and
 possibly others) with revising their (probably chaotic) notes. 
 
-The tech stack will consist largely of Python. The following libraries 
+The tech stack consists of purely Python. The following libraries 
 will be used: 
 
 - FastAPI
