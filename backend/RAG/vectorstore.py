@@ -1,6 +1,6 @@
 from langchain.vectorstores import FAISS
 from langchain.embeddings import SentenceTransformerEmbeddings
-from ingestion import PDFIngestor
+from .ingestion import PDFIngestor
 import numpy as np 
 import faiss
 import pickle
@@ -56,6 +56,11 @@ class VectorStore():
         path = index_path or self.index_path
         if path is None: 
             raise ValueError("No path specified for saving index.")
+        
+        # Create the folder if it doesn't exist
+        folder = os.path.dirname(path)
+        if folder and not os.path.exists(folder):
+            os.makedirs(folder)
         
         faiss.write_index(self.index, path)
         with open(path + ".meta", "wb") as f:

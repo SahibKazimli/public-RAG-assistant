@@ -1,6 +1,7 @@
 from langchain_google_vertexai import ChatVertexAI
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from vertexai import init
 from dotenv import load_dotenv
 from typing import List
 import os 
@@ -16,12 +17,17 @@ credentials_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
 
+init(
+    project="woven-nimbus-461919-j1",  
+    location="us-central1"  
+)
+
 
 # Initialize the model via langchain
 instruct_llm = ChatVertexAI(
     model_name="gemini-1.5-pro",
     temperature=0.2,
-    max_output_token=1024
+    max_output_tokens=1024
 )
 
 prompt_template = ChatPromptTemplate.from_template("""

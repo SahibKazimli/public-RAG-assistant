@@ -5,7 +5,7 @@ import os
 
 # Replace with your own URL. 
 load_dotenv()
-BACKEND_URL = os.getenv("BACKEND_URL","http://localhost:8000")
+BACKEND_URL = "http://localhost:8000"
 
 
 st.title("Revising Assistant")
@@ -27,7 +27,7 @@ if st.button("Generate Answer"):
         payload = {"query":question}
         req = requests.post(f"{BACKEND_URL}/generate", json=payload)
         if req.ok: 
-            st.write(req.json)
+            st.write(req.json())
         else: 
             st.error("Error getting response")
     else: 

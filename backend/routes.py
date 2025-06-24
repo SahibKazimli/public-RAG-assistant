@@ -1,7 +1,7 @@
 from fastapi import APIRouter, UploadFile, File, Request
-from RAG.ingestion import PDFIngestor
-from RAG.vectorstore import VectorStore
-from agent import generate_answers
+from .RAG.ingestion import PDFIngestor
+from .RAG.vectorstore import VectorStore
+from .agent import generate_answers
 from pydantic import BaseModel
 import os
 
