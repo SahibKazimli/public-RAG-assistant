@@ -6,7 +6,7 @@ __pycache__/
 venv/
 
 
-# Ignore data uploads folder (optional)
+# Ignore data uploads folder 
 data/
 
 # Ignore the whole credentials folder
@@ -14,3 +14,6 @@ credentials/
 
 # Ignore the Google API key
 .env
+
+# Ignore my indexes
+indexes

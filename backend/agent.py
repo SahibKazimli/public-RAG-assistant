@@ -42,7 +42,7 @@ Question: {question}
 
 
 def generate_answers(query: str, context_chunks: List[str]) -> str: 
-    context = " \n".join(context_chunks)
+    context = " \n".join(chunk["text"] for chunk in context_chunks)
     
     # Chain which will get a clean, generated LLM response
     chain = prompt_template | instruct_llm | StrOutputParser()
