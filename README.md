@@ -19,6 +19,13 @@ I chose Google's API for convenience, since I have quite a few GCP credits
 and would like to use them. Feel free to rework the code to fit your preferences, 
 for example using OpenAI's API, and so on. 
 
+To run this locally, make sure you install all dependencies within requirements.txt
+and run this in your terminal while being in the project root:
+uvicorn backend.main:app --reload 
+
+Then to run the frontend, navigate to the frontend folder and run: 
+streamlit run streamlit_app.py 
+
 I plan on extending the project by implementing an image pipeline too, and 
 eventually creating a discord bot for my friends to use for servers which would 
 make it much easier to find funny messages people have sent. 
