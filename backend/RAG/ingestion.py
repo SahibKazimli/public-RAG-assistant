@@ -1,5 +1,6 @@
 from PyPDF2 import PdfReader
 from langchain.embeddings import SentenceTransformerEmbeddings
+from langchain_google_vertexai import VertexAIEmbeddings 
 from langchain_text_splitters import CharacterTextSplitter
 
 
@@ -8,9 +9,9 @@ capability is to just handle the text within PDF-files, ignoring handwritten tex
 and images. This functionality will hopefully be added in the future."""
 
 class PDFIngestor:
-    def __init__(self, embedding_model_name="all-MiniLM-L6-v2"):
+    def __init__(self, embedding_model_name="text-embedding-004"):
         # Initialize the embedding model once
-        self.embedding_model = SentenceTransformerEmbeddings(model_name=embedding_model_name)
+        self.embedding_model = VertexAIEmbeddings(model_name=embedding_model_name)
         self.text_splitter = CharacterTextSplitter.from_tiktoken_encoder(
             encoding_name="cl100k_base", chunk_size=1000, chunk_overlap=200
         )
@@ -22,7 +23,6 @@ class PDFIngestor:
         text = ""
         for page in reader.pages:
             text += page.extract_text() or ""
-            
         return text 
         
         
