@@ -28,7 +28,7 @@ model_name = "gemini-2.5-flash"
 instruct_llm = ChatVertexAI(
     model_name=model_name,
     temperature=0.2,
-    max_output_tokens=1024
+    max_output_tokens=1800
 )
 
 prompt_template = ChatPromptTemplate.from_template("""
@@ -41,6 +41,9 @@ Use only the context provided to answer the question.
 - If the answer is not found in the context, say honestly that you don't know.
 - Avoid repeating the question or adding unrelated information.
 - Help the student truly understand the material.
+
+Keep your answer concise but complete within the token limit.
+If the full answer is too long, summarize the key points clearly.
 
 Context: {context}
 

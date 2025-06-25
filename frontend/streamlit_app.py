@@ -20,7 +20,7 @@ if uploaded_file:
         st.success("File uploaded successfully!")
         
     
-question = st.text_input("Ask a question about your notes")
+question = st.text_area("Ask a question about your notes", height=150)
 
 if st.button("Generate Answer"):
     if question: 
