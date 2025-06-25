@@ -22,10 +22,11 @@ init(
     location="us-central1"  
 )
 
+model_name = "gemini-2.5-flash"
 
 # Initialize the model via langchain
 instruct_llm = ChatVertexAI(
-    model_name="gemini-1.5-pro",
+    model_name=model_name,
     temperature=0.2,
     max_output_tokens=1024
 )
