@@ -10,6 +10,7 @@ will be used:
 - FastAPI
 - LangChain
 - Google Vertex AI
+- Google Cloud AI Platform
 - FAISS
 - dotenv
 - streamlit (Frontend)
@@ -17,4 +18,8 @@ will be used:
 I chose Google's API for convenience, since I have quite a few GCP credits
 and would like to use them. Feel free to rework the code to fit your preferences, 
 for example using OpenAI's API, and so on. 
+
+I plan on extending the project by implementing an image pipeline too, and 
+eventually creating a discord bot for my friends to use for servers which would 
+make it much easier to find funny messages people have sent. 
 
