@@ -2,18 +2,18 @@
 __pycache__/
 *.pyc
 
-# Ignore virtual environments 
+# Ignore virtual environments
 venv/
 
-
-# Ignore data uploads folder 
+# Ignore data uploads folder
 data/
 
 # Ignore the whole credentials folder
 credentials/
 
-# Ignore the Google API key
+# Ignore environment variable files with secrets
 .env
+.env.*  # ignore any other env variants like .env.local etc.
 
-# Ignore my indexes
-indexes
+# Ignore your FAISS index files
+indexes/
