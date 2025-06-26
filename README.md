@@ -5,7 +5,7 @@ This project is a hands-on tool designed to help with revising messy notes using
 The goal is to sharpen my skills by building useful tools and experimenting with agent-based design patterns, including agent-to-agent communication.
 
 What It Does
-- Upload a PDF of notes (even chaotic ones!)
+- Upload a PDF of notes (even chaotic ones)
 - Automatically chunk, embed, and store them in a vector index
 - Ask questions about your notes — the assistant will retrieve relevant chunks and generate clear, helpful answers
 - Categorizes questions via a sorting agent to route them more effectively (e.g., concept explanations, definitions, workflows)
