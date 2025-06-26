@@ -11,6 +11,7 @@ will be used:
 - LangChain
 - Google Vertex AI
 - Google Cloud AI Platform
+- Sentence Transformers
 - FAISS
 - dotenv
 - streamlit (Frontend)
