@@ -13,7 +13,7 @@ def root():
 
 # Initialize components globally (shared across requests)
 ingestor = PDFIngestor()
-vector_store = VectorStore(embedding_dim=384, index_path="indexes/my_index.faiss")
+vector_store = VectorStore(index_path="indexes/my_index.faiss")
 
 
 """Need to implement an /upload endpoint. It needs to accept a file (PDF), 
@@ -62,6 +62,8 @@ class QueryRequest(BaseModel):
 async def query_endpoint(request: QueryRequest):
     top_chunks = vector_store.query_search(request.query, k=5)
     return {"results": top_chunks}
+
+
 
 """The generate endpoint which will call the LLM to get a generated
 response. """

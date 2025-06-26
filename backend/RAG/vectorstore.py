@@ -1,5 +1,6 @@
 from langchain.vectorstores import FAISS
 from langchain.embeddings import SentenceTransformerEmbeddings
+from langchain_google_vertexai import VertexAIEmbeddings
 from .ingestion import PDFIngestor
 import numpy as np 
 import faiss
@@ -12,11 +13,13 @@ will be stored. """
 
 
 class VectorStore(): 
-    def __init__(self, embedding_dim : int, index_path: str = None, embedding_model_name="all-MiniLM-L6-v2"):
+    def __init__(self, index_path: str = None, embedding_model_name="text-embedding-004"):
         self.index_path = index_path
-        self.embedding_dim = embedding_dim
-        self.embedding_model = SentenceTransformerEmbeddings(model_name=embedding_model_name)
+        self.embedding_model = VertexAIEmbeddings(model_name=embedding_model_name)
         self.metadata = {} # Map vector id to data
+        
+        sample_embedding = self.embedding_model.embed_query("sample")
+        embedding_dim = len(sample_embedding)
         
         if index_path and os.path.exists(index_path):
             # Load existing index
