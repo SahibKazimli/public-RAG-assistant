@@ -36,15 +36,15 @@ https://cloud.google.com/free
 
 
 To run this app:
-	•	Enable Vertex AI and Cloud Storage APIs
-	•	Create a service account and download the JSON key
-	•	Set the following environment variable: GOOGLE_APPLICATION_CREDENTIALS="path/to/your/key.json"
+- Enable Vertex AI and Cloud Storage APIs
+- Create a service account and download the JSON key
+- Set the following environment variable: GOOGLE_APPLICATION_CREDENTIALS="path/to/your/key.json"
 
 
 Future Improvements
-	•	Add rate limiting if deployed publicly
-	•	Add support for handwritten notes via OCR
-	•	Improve agent responses with longer context windows or visual reasoning
+- Add rate limiting if deployed publicly
+- Add support for handwritten notes via OCR
+- Improve agent responses with longer context windows or visual reasoning
 
 
 Final Notes
