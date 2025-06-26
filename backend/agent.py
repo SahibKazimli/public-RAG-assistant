@@ -38,7 +38,7 @@ question_type_to_model = {
 instruct_llm = ChatVertexAI(
     model_name=model_name,
     temperature=0.2,
-    max_output_tokens=2500
+    max_output_tokens=3500
 )
 
 prompt_template = ChatPromptTemplate.from_template("""
@@ -74,7 +74,9 @@ prompt_template = ChatPromptTemplate.from_template("""
     <UseAnalogies>When helpful, relate concepts to everyday ideas or relevant engineering fields</UseAnalogies>
     <ReferenceRAG>Always cite or refer precisely to RAG-sourced context if applicable</ReferenceRAG>
     <HandleUnknowns>Admit when information is missing or unavailable</HandleUnknowns>
-    <KeepConcise>Be brief but complete</KeepConcise>
+    <KeepConcise>Be concise, but provide slightly more detail where it supports clarity or deeper understanding</KeepConcise>
+    <ExpandWhenHelpful>If the context allows, expand slightly on important distinctions, conceptual reasoning, and practical applications</ExpandWhenHelpful>
+    <IncorporateUseCases>If the question expresses confusion about application (e.g., "when to use X vs Y"), include guidance on appropriate use cases</IncorporateUseCases>
     <FinishWithinTokenLimit>Ensure the entire response is complete and fits within the maximum token limit of 2500 tokens.</FinishWithinTokenLimit>
     <OutputFormat>
       Respond ONLY with a valid JSON object matching the appropriate schema based on the question type. DO NOT include explanations or additional text.
@@ -134,31 +136,17 @@ def generate_answers(query: str, context_chunks: List[str]) -> str:
     # Get JSON response as a string
     response_str = chain.invoke(prompt_input).strip()
 
-    # Clean surrounding markdown, if any
+    # Strip markdown fences if present (just simple cleanup)
     response_str = response_str.strip()
     response_str = re.sub(r"^```(?:json)?\s*", "", response_str)
     response_str = re.sub(r"\s*```$", "", response_str)
 
-    # Attempt to extract JSON with regex if response is not a clean JSON blob
-    try:
-        json_candidate = re.search(r"\{[\s\S]*\}", response_str).group(0)
-    except AttributeError:
-        raise ValueError(f"Could not extract JSON object from: {response_str}")
+    # Assume response_str is valid JSON now, parse directly
+    parsed_dict = json.loads(response_str)
 
-    # Parsing the pydantic model
+    # Convert to Pydantic model (assuming fields are all present and correctly formatted)
     model_class = question_type_to_model.get(question_type)
-    if not model_class:
-        raise ValueError(f"Unsupported question type: {question_type}")
-    try:
-        # Fill in None fields that are expected to be strings with empty string
-        parsed_dict = json.loads(json_candidate)
-        for field, value in parsed_dict.items():
-            expected_type = model_class.model_fields.get(field)
-            if expected_type and expected_type.annotation == str and value is None:
-                parsed_dict[field] = ""
-        structured_output = model_class.model_validate(parsed_dict)
-    except ValidationError as e:
-        raise ValueError(f"Failed to parse LLM response into {question_type}: {e}")
+    structured_output = model_class.model_validate(parsed_dict)
     
     
     return structured_output
