@@ -1,36 +1,58 @@
 Welcome to my Personal Assistant project!
 
-The goal of this project is to hone my skills and gain more knowledge by
-building tools. I will be building a RAG agent with an LLM to help me (and
-possibly others) with revising their chaotic notes. 
+This project is a hands-on tool designed to help with revising messy notes using Retrieval-Augmented Generation (RAG) powered by a Large Language Model (LLM).
 
-The tech stack consists of purely Python. The following libraries 
-will be used: 
+The goal is to sharpen my skills by building useful tools and experimenting with agent-based design patterns, including agent-to-agent communication.
 
+What It Does
+	•	Upload a PDF of notes (even chaotic ones!)
+	•	Automatically chunk, embed, and store them in a vector index
+	•	Ask questions about your notes — the assistant will retrieve relevant chunks and generate clear, helpful answers
+	•	Categorizes questions via a sorting agent to route them more effectively (e.g., concept explanations, definitions, workflows)
+ 
+
+Tech Stack 
 - FastAPI
-- LangChain
-- Google Vertex AI
+- LangChain – Agent + Chaining logic
+- Google Vertex AI – LLM and embeddings (using gemini-2.5-flash and text-embedding-004)
 - Google Cloud AI Platform
-- Sentence Transformers
-- FAISS
-- dotenv
-- streamlit (Frontend)
+- FAISS – Vector Similarity Search
+- dotenv – Environment Variable Handling
+- Streamlit – Frontend UI
 
-I chose Google's API for convenience, since I have quite a few GCP credits
-and would like to use them. Feel free to rework the code to fit your preferences, 
-for example using OpenAI's API, and so on. 
+Running Locally:
+pip install -r requirements.txt
 
-To run this locally, make sure you install all dependencies within requirements.txt
-and run this in your terminal while being in the project root:
-uvicorn backend.main:app --reload 
+Start the backend (assuming you are running from the project root):
+uvicorn backend.main:app --reload
 
-Then to run the frontend, navigate to the frontend folder and run: 
-streamlit run streamlit_app.py 
+Start the frontend:
+cd frontend
+streamlit run streamlit_app.py
 
-Google gives around 300€ in free credits, and have many tutorials on how 
-to use their cloud platform: https://cloud.google.com/free/
+Google Cloud Setup:
+Google offers around €300 in free credits for new users:
+https://cloud.google.com/free
 
-You can get your own service account key this way
-and run the app locally. In the event that I do deploy this, I will have to add
-some rate limiter for API usage, but this was mainly made just to gain more knowledge. 
+
+To run this app:
+	•	Enable Vertex AI and Cloud Storage APIs
+	•	Create a service account and download the JSON key
+	•	Set the following environment variable: GOOGLE_APPLICATION_CREDENTIALS="path/to/your/key.json"
+
+
+Future Improvements
+	•	Add rate limiting if deployed publicly
+	•	Add support for handwritten notes via OCR
+	•	Improve agent responses with longer context windows or visual reasoning
+
+
+Final Notes
+This app is built primarily to learn, explore, and experiment.
+Feel free to clone, modify, or use it as a base for your own assistant projects!
+Performance was not the focus, but optimally the computationally intensive functions should be written in a high performance language like C++ or Golang.
+
+
+
+<img width="1470" alt="Screenshot 2025-06-27 at 00 30 45" src="https://github.com/user-attachments/assets/3a541401-e74e-4e31-af48-69b8e15ef4c6" />
 
