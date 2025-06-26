@@ -75,9 +75,8 @@ prompt_template = ChatPromptTemplate.from_template("""
     <ReferenceRAG>Always cite or refer precisely to RAG-sourced context if applicable</ReferenceRAG>
     <HandleUnknowns>Admit when information is missing or unavailable</HandleUnknowns>
     <KeepConcise>Be concise, but provide slightly more detail where it supports clarity or deeper understanding</KeepConcise>
-    <ExpandWhenHelpful>If the context allows, expand slightly on important distinctions, conceptual reasoning, and practical applications</ExpandWhenHelpful>
-    <IncorporateUseCases>If the question expresses confusion about application (e.g., "when to use X vs Y"), include guidance on appropriate use cases</IncorporateUseCases>
-    <FinishWithinTokenLimit>Ensure the entire response is complete and fits within the maximum token limit of 2500 tokens.</FinishWithinTokenLimit>
+    <ExpandWhenHelpful>If the context allows, expand slightly on important distinctions or practical examples to enrich understanding</ExpandWhenHelpful>
+    <FinishWithinTokenLimit>Ensure the entire response is complete and fits within the maximum token limit of 3500 tokens.</FinishWithinTokenLimit>
     <OutputFormat>
       Respond ONLY with a valid JSON object matching the appropriate schema based on the question type. DO NOT include explanations or additional text.
 
@@ -110,6 +109,11 @@ prompt_template = ChatPromptTemplate.from_template("""
         "risks_or_warnings": ["...", "..."],
         "optional_visual_description": "..."
       }}
+      <EnhanceVisuals>
+        Provide richer, clearly formatted content in the optional_visual_description field.
+        Use paragraph breaks where appropriate to improve readability.
+        Avoid clutter by keeping the description logically ordered and visually helpful, not overwhelming.
+      </EnhanceVisuals>
     </OutputFormat>
   </Instructions>
   <Context>{context}</Context>
