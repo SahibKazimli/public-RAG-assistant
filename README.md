@@ -27,3 +27,10 @@ uvicorn backend.main:app --reload
 Then to run the frontend, navigate to the frontend folder and run: 
 streamlit run streamlit_app.py 
 
+Google gives around 300€ in free credits, and have many tutorials on how 
+to use their cloud platform: https://cloud.google.com/free/
+
+You can get your own service account key this way
+and run the app locally. In the event that I do deploy this, I will have to add
+some rate limiter for API usage, but this was mainly made just to gain more knowledge. 
+
