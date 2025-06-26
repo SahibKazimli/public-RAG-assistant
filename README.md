@@ -1,4 +1,4 @@
-Welcome to my Personal Assistant project!
+<h1>Welcome to my Personal Assistant project!<h1>
 
 This project is a hands-on tool designed to help with revising messy notes using Retrieval-Augmented Generation (RAG) powered by a Large Language Model (LLM).
 
