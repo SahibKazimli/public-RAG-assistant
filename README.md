@@ -26,7 +26,3 @@ uvicorn backend.main:app --reload
 Then to run the frontend, navigate to the frontend folder and run: 
 streamlit run streamlit_app.py 
 
-I plan on extending the project by implementing an image pipeline too, and 
-eventually creating a discord bot for my friends to use for servers which would 
-make it much easier to find funny messages people have sent. 
-
