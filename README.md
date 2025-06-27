@@ -6,7 +6,7 @@ The goal is to sharpen my skills by building useful tools and experimenting with
 
 <h2>What It Does</h2>
 
-- Upload a PDF of notes (even chaotic ones)
+- Upload a PDF of notes, papers etc (even chaotic ones)
 - Automatically chunk, embed, and store them in a vector index
 - Ask questions about your notes — the assistant will retrieve relevant chunks and generate clear, helpful answers
 - Categorizes questions via a sorting agent to route them more effectively (e.g., concept explanations, definitions, workflows)
