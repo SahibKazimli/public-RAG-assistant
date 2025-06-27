@@ -5,6 +5,7 @@ This project is a hands-on tool designed to help with revising messy notes using
 The goal is to sharpen my skills by building useful tools and experimenting with agent-based design patterns, including agent-to-agent communication.
 
 <h2>What It Does</h2>
+
 - Upload a PDF of notes (even chaotic ones)
 - Automatically chunk, embed, and store them in a vector index
 - Ask questions about your notes — the assistant will retrieve relevant chunks and generate clear, helpful answers
@@ -12,6 +13,7 @@ The goal is to sharpen my skills by building useful tools and experimenting with
  
 
 <h2>Tech Stack </h2>
+
 - FastAPI
 - LangChain – Agent + Chaining logic
 - Google Vertex AI – LLM and embeddings (using gemini-2.5-flash and text-embedding-004)
