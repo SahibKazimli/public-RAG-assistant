@@ -33,17 +33,20 @@ cd frontend
 streamlit run streamlit_app.py
 
 <h3>Google Cloud Setup:</h3>
+
 Google offers around €300 in free credits for new users:
 https://cloud.google.com/free
 
 
 </h3>To run this app:</h3>
+
 - Enable Vertex AI and Cloud Storage APIs
 - Create a service account and download the JSON key
 - Set the following environment variable: GOOGLE_APPLICATION_CREDENTIALS="path/to/your/key.json"
 
 
-<h3>Future Improvements</h3>
+<h3>Future Improvements</h3> 
+
 - Add rate limiting if deployed publicly
 - Add support for handwritten notes via OCR and/or images
 - Improve agent responses with longer context windows or visual reasoning
