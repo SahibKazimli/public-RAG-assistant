@@ -50,7 +50,7 @@ https://cloud.google.com/free
 - Add rate limiting if deployed publicly
 - Add support for handwritten notes via OCR and/or images
 - Improve agent responses with longer context windows or visual reasoning
-- Add multiple agents, researcher, rephraser, summarizer for even better output (the project already has a routing agent!)
+- Add multiple agents, researcher, rephraser, summarizer for even better output 
 
 
 <h3>Final Notes</h3>
